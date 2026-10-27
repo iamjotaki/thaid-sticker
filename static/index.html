@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="th" class="dark scroll-smooth">
+<html lang="th" class="dark scroll-smooth bg-[#141414]">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,25 +8,12 @@
   <link rel="icon" href="https://thaid.online/favicon.ico">
 
   <!-- Theme check before render -->
-  <script>
-    (function(){
-      try{
-        var s = localStorage.getItem('thaid-theme');
-        if(s === 'light'){
-          document.documentElement.classList.remove('dark');
-          document.documentElement.classList.add('light');
-        } else {
-          document.documentElement.classList.add('dark');
-          document.documentElement.classList.remove('light');
-        }
-      }catch(e){}
-    })();
-  </script>
+  <script>document.documentElement.classList.add("dark");</script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
@@ -37,7 +24,7 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'Prompt', 'sans-serif'],
+            sans: ['"Google Sans"', '"Noto Sans Thai"', '"Plus Jakarta Sans"', 'sans-serif'],
             thai: ['Prompt', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace']
           },
@@ -99,12 +86,12 @@
   </style>
 </head>
 
-<body class="bg-[#f5f5f7] dark:bg-[#0c0c0e] text-[#1d1d1f] dark:text-[#f5f5f7] min-h-screen flex flex-col font-sans selection:bg-emerald-500/20 selection:text-emerald-500 transition-colors duration-300">
+<body class="bg-[#141414] text-[#f5f5f7] min-h-screen flex flex-col font-sans selection:bg-[#0074e2]/30 selection:text-white">
 
   <!-- ======================================================== -->
   <!-- 1. TRANSLUCENT GLOBAL HEADER (APPLE FROSTED NAVBAR)     -->
   <!-- ======================================================== -->
-  <header class="sticky top-0 z-50 h-[52px] bg-white/80 dark:bg-[#161619]/80 backdrop-blur-xl border-b border-black/[0.08] dark:border-white/[0.08] shadow-xs">
+  <header class="sticky top-0 z-50 border-b border-white/[0.08] bg-[#141414]/90 backdrop-blur-md">
     <div class="max-w-[1700px] w-full mx-auto px-4 sm:px-6 h-full flex items-center justify-between gap-4">
       
       <!-- Brand Logo -->
@@ -113,7 +100,7 @@
           <span class="material-symbols-outlined text-[17px]">sentiment_satisfied</span>
         </div>
         <div class="flex items-center gap-1.5">
-          <span class="text-sm sm:text-base font-bold tracking-tight text-[#1d1d1f] dark:text-white">
+          <span class="text-sm sm:text-base font-bold tracking-tight text-white">
             ThaiD<span class="text-emerald-500">.online</span>
           </span>
           <span class="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-[9px] font-bold px-1.5 py-0.5 rounded tracking-wider uppercase">
@@ -123,7 +110,7 @@
       </a>
 
       <!-- Center: Contextual Segmented Navigation Links (Unified 4-Pill Ecosystem Standard) -->
-      <nav class="hidden md:flex items-center gap-1 bg-stone-200/60 dark:bg-white/[0.06] p-1 rounded-xl border border-black/[0.04] dark:border-white/[0.05] text-xs font-medium">
+      <nav class="hidden md:flex items-center gap-1 bg-white/[0.04] p-1 rounded-xl border border-black/[0.04] dark:border-white/[0.05] text-xs font-medium">
         <a href="https://thaid.online" class="px-3 py-1 rounded-lg text-[#86868b] hover:text-[#1d1d1f] dark:text-stone-400 dark:hover:text-white transition-colors flex items-center gap-1.5">
           <span class="material-symbols-outlined text-[14px]">hub</span>
           <span>ThaiD Hub</span>
@@ -157,9 +144,7 @@
         </button>
 
         <!-- Dark Mode Toggle -->
-        <button id="themeToggleBtn" onclick="toggleTheme()" class="p-1.5 rounded-lg text-stone-600 hover:text-[#1d1d1f] dark:text-stone-400 dark:hover:text-stone-100 hover:bg-stone-200/60 dark:hover:bg-white/10 transition-colors" title="สลับโหมดมืด / สว่าง">
-          <span id="themeIcon" class="material-symbols-outlined text-[19px]">light_mode</span>
-        </button>
+        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.08] text-[11px] text-stone-400"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span>Fastwork Studio</span></div>
       </div>
     </div>
   </header>
@@ -170,7 +155,7 @@
   <main class="max-w-[1700px] w-full mx-auto px-4 sm:px-6 py-6 flex-1 flex flex-col gap-6">
 
     <!-- Top Hero / Control Dashboard Ribbon -->
-    <section class="bg-white dark:bg-[#161619] rounded-2xl p-5 sm:p-6 border border-black/[0.06] dark:border-white/[0.08] shadow-sm">
+    <section class="bg-[#1b1b1e] rounded-2xl p-5 sm:p-6 border border-black/[0.06] dark:border-white/[0.08] shadow-sm">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
         
         <!-- Left 8 Cols: Character Definition & Styling -->
@@ -195,7 +180,7 @@
           <!-- Character Prompt Input -->
           <div>
             <div class="relative">
-              <input id="inputCharacterDesc" type="text" value="ลูกแมวสามสีตัวอ้วนกลม ใส่ผ้าพันคอไหมพรมสีเหลือง ตาโตแป๋วแหวว น่ารักน่าเอ็นดู" placeholder="ระบุคาแรคเตอร์ เช่น ลูกหมาชิบะแก้มป่องใส่หมวกฟาง หรือ เด็กผู้หญิงผมบ็อบสวมเอี๊ยมยีนส์..." class="w-full bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl px-4 py-2.5 text-sm text-[#1d1d1f] dark:text-white placeholder-stone-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all font-medium">
+              <input id="inputCharacterDesc" type="text" value="ลูกแมวสามสีตัวอ้วนกลม ใส่ผ้าพันคอไหมพรมสีเหลือง ตาโตแป๋วแหวว น่ารักน่าเอ็นดู" placeholder="ระบุคาแรคเตอร์ เช่น ลูกหมาชิบะแก้มป่องใส่หมวกฟาง หรือ เด็กผู้หญิงผมบ็อบสวมเอี๊ยมยีนส์..." class="w-full bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-stone-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all font-medium">
               <button onclick="fillRandomCharacter()" class="absolute right-2 top-2 px-2 py-1 rounded-lg bg-stone-200 dark:bg-stone-800 hover:bg-stone-300 dark:hover:bg-stone-700 text-[11px] font-semibold text-stone-600 dark:text-stone-300 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-[13px]">casino</span>
                 <span>สุ่มตัวละคร</span>
@@ -253,7 +238,7 @@
                 </div>
                 <div class="text-[10px] text-stone-500 dark:text-stone-400">ความเร็วสูง (4-8 วิ/รูป)</div>
               </button>
-              <button onclick="setEngine('flow')" id="engineFlowBtn" class="p-2 rounded-lg border border-stone-200 dark:border-stone-800 text-left text-stone-600 dark:text-stone-400 hover:border-emerald-500/40">
+              <button onclick="setEngine('flow')" id="engineFlowBtn" class="p-2 rounded-lg border border-stone-200 dark:border-stone-800 text-left text-stone-400 hover:border-emerald-500/40">
                 <div class="flex items-center gap-1.5 font-bold text-xs">
                   <span class="material-symbols-outlined text-[15px]">cloud</span>
                   <span>Google Flow REST</span>
@@ -263,7 +248,7 @@
             </div>
 
             <!-- Matting Quick Toggle -->
-            <div class="flex items-center justify-between text-xs py-1 border-t border-stone-200 dark:border-stone-800 pt-2 text-stone-600 dark:text-stone-400">
+            <div class="flex items-center justify-between text-xs py-1 border-t border-stone-200 dark:border-stone-800 pt-2 text-stone-400">
               <div class="flex items-center gap-1.5">
                 <span class="material-symbols-outlined text-[15px] text-emerald-500">auto_fix_high</span>
                 <span>ขอบขาวไดคัต (LINE Die-Cut):</span>
@@ -318,14 +303,14 @@
       <!-- ======================================================== -->
       <!-- LEFT 4 COLS: 530+ THAI CAPTION LIBRARY BROWSER          -->
       <!-- ======================================================== -->
-      <aside class="lg:col-span-4 bg-white dark:bg-[#161619] rounded-2xl p-4 sm:p-5 border border-black/[0.06] dark:border-white/[0.08] shadow-sm flex flex-col gap-4 max-h-[850px]">
+      <aside class="lg:col-span-4 bg-[#1b1b1e] rounded-2xl p-4 sm:p-5 border border-black/[0.06] dark:border-white/[0.08] shadow-sm flex flex-col gap-4 max-h-[850px]">
         
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
             <span class="material-symbols-outlined text-emerald-500 text-[20px]">menu_book</span>
-            <h3 class="font-bold text-sm text-[#1d1d1f] dark:text-white">คลังแคปชัน & ท่าทาง (530+ ข้อความ)</h3>
+            <h3 class="font-bold text-sm text-white">คลังแคปชัน & ท่าทาง (530+ ข้อความ)</h3>
           </div>
-          <span id="captionCountBadge" class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400">
+          <span id="captionCountBadge" class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-400">
             530 รายการ
           </span>
         </div>
@@ -333,7 +318,7 @@
         <!-- Search input -->
         <div class="relative">
           <span class="material-symbols-outlined absolute left-3 top-2.5 text-stone-400 text-[18px]">search</span>
-          <input id="inputCaptionSearch" type="text" oninput="filterCaptions()" placeholder="ค้นหาข้อความ เช่น สวัสดี, สู้ๆ, ขอบคุณ..." class="w-full bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl pl-9 pr-3 py-2 text-xs text-[#1d1d1f] dark:text-white placeholder-stone-400 focus:outline-none focus:border-emerald-500 transition-all">
+          <input id="inputCaptionSearch" type="text" oninput="filterCaptions()" placeholder="ค้นหาข้อความ เช่น สวัสดี, สู้ๆ, ขอบคุณ..." class="w-full bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder-stone-400 focus:outline-none focus:border-emerald-500 transition-all">
         </div>
 
         <!-- Category Horizontal Pills -->
@@ -360,12 +345,12 @@
       <section class="lg:col-span-8 flex flex-col gap-4">
         
         <!-- Grid Toolbar: Background View Mode & Selection Indicator -->
-        <div class="bg-white dark:bg-[#161619] rounded-2xl p-4 border border-black/[0.06] dark:border-white/[0.08] shadow-sm flex flex-wrap items-center justify-between gap-3">
+        <div class="bg-[#1b1b1e] rounded-2xl p-4 border border-black/[0.06] dark:border-white/[0.08] shadow-sm flex flex-wrap items-center justify-between gap-3">
           
           <div class="flex items-center gap-3">
             <div class="flex items-center gap-1.5 text-xs font-semibold text-stone-500 dark:text-stone-400">
               <span class="material-symbols-outlined text-emerald-500 text-[18px]">collections</span>
-              <span>เซ็ตสติกเกอร์: <strong id="slotsCountLabel" class="text-[#1d1d1f] dark:text-white font-bold">40 รูป</strong></span>
+              <span>เซ็ตสติกเกอร์: <strong id="slotsCountLabel" class="text-white font-bold">40 รูป</strong></span>
             </div>
             <span class="text-stone-300 dark:text-stone-700">|</span>
             <div class="flex items-center gap-1 text-xs text-stone-500 dark:text-stone-400">
@@ -378,7 +363,7 @@
           <div class="flex items-center gap-1 text-xs">
             <span class="text-stone-400 text-[11px] mr-1 hidden sm:inline">โหมดพรีวิว:</span>
             <div class="inline-flex rounded-lg bg-stone-100 dark:bg-stone-800 p-0.5 border border-black/5 dark:border-white/5">
-              <button onclick="setViewMode('checker')" class="view-mode-pill active px-2.5 py-1 rounded text-[11px] font-semibold bg-white dark:bg-stone-700 text-[#1d1d1f] dark:text-white shadow-xs" data-mode="checker" title="พื้นหลังโปร่งใส Checkerboard">
+              <button onclick="setViewMode('checker')" class="view-mode-pill active px-2.5 py-1 rounded text-[11px] font-semibold bg-white dark:bg-stone-700 text-white shadow-xs" data-mode="checker" title="พื้นหลังโปร่งใส Checkerboard">
                 โปร่งใส
               </button>
               <button onclick="setViewMode('line-dark')" class="view-mode-pill px-2.5 py-1 rounded text-[11px] font-semibold text-stone-500 dark:text-stone-400 hover:text-emerald-500" data-mode="line-dark" title="จำลองแชท LINE Dark Mode">
@@ -395,8 +380,8 @@
         <!-- LINE Official Special Slots: Main & Tab Header Row -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <!-- Main Image Slot (240x240) -->
-          <div class="bg-white dark:bg-[#161619] rounded-2xl p-4 border border-black/[0.06] dark:border-white/[0.08] shadow-sm flex items-center gap-4">
-            <div id="slot-preview-main" class="w-20 h-20 rounded-xl bg-checker flex items-center justify-center border border-black/10 dark:border-white/10 overflow-hidden relative group">
+          <div class="bg-[#1b1b1e] rounded-2xl p-4 border border-black/[0.06] dark:border-white/[0.08] shadow-sm flex items-center gap-4">
+            <div id="slot-preview-main" class="w-20 h-20 rounded-xl bg-checker flex items-center justify-center border border-white/[0.08] overflow-hidden relative group">
               <img id="img-main" src="" class="hidden w-full h-full object-contain p-1">
               <div id="empty-main" class="text-center text-stone-400 text-[10px]">
                 <span class="material-symbols-outlined text-[20px] block">star</span>
@@ -406,7 +391,7 @@
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-1.5 mb-0.5">
                 <span class="px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-500 border border-amber-500/20 text-[10px] font-bold">MAIN.PNG</span>
-                <span class="text-xs font-bold text-[#1d1d1f] dark:text-white">ภาพปกชุดสติกเกอร์</span>
+                <span class="text-xs font-bold text-white">ภาพปกชุดสติกเกอร์</span>
               </div>
               <p class="text-[11px] text-stone-500 dark:text-stone-400 mb-2">แสดงบนหน้าร้าน LINE STORE (240×240 px)</p>
               <button onclick="generateSpecialSlot('main')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-stone-800 hover:bg-emerald-500 hover:text-white text-[11px] font-semibold text-stone-600 dark:text-stone-300 transition-colors flex items-center gap-1">
@@ -417,8 +402,8 @@
           </div>
 
           <!-- Tab Image Slot (96x74) -->
-          <div class="bg-white dark:bg-[#161619] rounded-2xl p-4 border border-black/[0.06] dark:border-white/[0.08] shadow-sm flex items-center gap-4">
-            <div id="slot-preview-tab" class="w-20 h-20 rounded-xl bg-checker flex items-center justify-center border border-black/10 dark:border-white/10 overflow-hidden relative group">
+          <div class="bg-[#1b1b1e] rounded-2xl p-4 border border-black/[0.06] dark:border-white/[0.08] shadow-sm flex items-center gap-4">
+            <div id="slot-preview-tab" class="w-20 h-20 rounded-xl bg-checker flex items-center justify-center border border-white/[0.08] overflow-hidden relative group">
               <img id="img-tab" src="" class="hidden w-full h-full object-contain p-1">
               <div id="empty-tab" class="text-center text-stone-400 text-[10px]">
                 <span class="material-symbols-outlined text-[20px] block">tab</span>
@@ -428,7 +413,7 @@
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-1.5 mb-0.5">
                 <span class="px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-500 border border-blue-500/20 text-[10px] font-bold">TAB.PNG</span>
-                <span class="text-xs font-bold text-[#1d1d1f] dark:text-white">ไอคอนแถบห้องแชท</span>
+                <span class="text-xs font-bold text-white">ไอคอนแถบห้องแชท</span>
               </div>
               <p class="text-[11px] text-stone-500 dark:text-stone-400 mb-2">แสดงบนแถบเลือกสติกเกอร์ (96×74 px)</p>
               <button onclick="generateSpecialSlot('tab')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-stone-800 hover:bg-emerald-500 hover:text-white text-[11px] font-semibold text-stone-600 dark:text-stone-300 transition-colors flex items-center gap-1">
@@ -454,12 +439,12 @@
   <!-- 3. REMAT & OUTLINE TUNER MODAL                          -->
   <!-- ======================================================== -->
   <div id="rematModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-[#1c1c20] rounded-2xl max-w-lg w-full p-6 border border-black/10 dark:border-white/10 shadow-2xl flex flex-col gap-5 animate-in fade-in zoom-in-95 duration-200">
+    <div class="bg-white dark:bg-[#1c1c20] rounded-2xl max-w-lg w-full p-6 border border-white/[0.08] shadow-2xl flex flex-col gap-5 animate-in fade-in zoom-in-95 duration-200">
       
-      <div class="flex items-center justify-between border-b border-black/10 dark:border-white/10 pb-3">
+      <div class="flex items-center justify-between border-b border-white/[0.08] pb-3">
         <div class="flex items-center gap-2">
           <span class="material-symbols-outlined text-emerald-500">tune</span>
-          <h3 class="font-bold text-sm text-[#1d1d1f] dark:text-white">ปรับแต่งไดคัต & ขอบขาว (Remat Studio)</h3>
+          <h3 class="font-bold text-sm text-white">ปรับแต่งไดคัต & ขอบขาว (Remat Studio)</h3>
         </div>
         <button onclick="closeRematModal()" class="text-stone-400 hover:text-stone-600 dark:hover:text-stone-200">
           <span class="material-symbols-outlined text-[20px]">close</span>
@@ -467,7 +452,7 @@
       </div>
 
       <!-- Preview Box -->
-      <div class="h-56 rounded-xl bg-checker flex items-center justify-center border border-black/10 dark:border-white/10 overflow-hidden relative">
+      <div class="h-56 rounded-xl bg-checker flex items-center justify-center border border-white/[0.08] overflow-hidden relative">
         <img id="rematPreviewImg" src="" class="max-h-full max-w-full object-contain p-2">
         <div id="rematLoading" class="hidden absolute inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center text-white text-xs font-semibold gap-2">
           <span class="material-symbols-outlined animate-spin text-[20px]">sync</span>
@@ -503,8 +488,8 @@
       </div>
 
       <!-- Action Buttons -->
-      <div class="flex items-center justify-end gap-2 pt-3 border-t border-black/10 dark:border-white/10">
-        <button onclick="closeRematModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors">ยกเลิก</button>
+      <div class="flex items-center justify-end gap-2 pt-3 border-t border-white/[0.08]">
+        <button onclick="closeRematModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors">ยกเลิก</button>
         <button onclick="applyRematChanges()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-xs transition-all flex items-center gap-1.5">
           <span class="material-symbols-outlined text-[16px]">check</span>
           <span>บันทึกและอัปเดตสติกเกอร์ (0.2s)</span>
@@ -518,12 +503,12 @@
   <!-- 4. EDIT PROMPT & CAPTION MODAL                          -->
   <!-- ======================================================== -->
   <div id="editSlotModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-[#1c1c20] rounded-2xl max-w-md w-full p-6 border border-black/10 dark:border-white/10 shadow-2xl flex flex-col gap-4 animate-in fade-in zoom-in-95 duration-200">
+    <div class="bg-white dark:bg-[#1c1c20] rounded-2xl max-w-md w-full p-6 border border-white/[0.08] shadow-2xl flex flex-col gap-4 animate-in fade-in zoom-in-95 duration-200">
       
-      <div class="flex items-center justify-between border-b border-black/10 dark:border-white/10 pb-3">
+      <div class="flex items-center justify-between border-b border-white/[0.08] pb-3">
         <div class="flex items-center gap-2">
           <span class="material-symbols-outlined text-emerald-500">edit_note</span>
-          <h3 class="font-bold text-sm text-[#1d1d1f] dark:text-white" id="editModalTitle">แก้ไขสติกเกอร์ช่องที่ 1</h3>
+          <h3 class="font-bold text-sm text-white" id="editModalTitle">แก้ไขสติกเกอร์ช่องที่ 1</h3>
         </div>
         <button onclick="closeEditModal()" class="text-stone-400 hover:text-stone-600 dark:hover:text-stone-200">
           <span class="material-symbols-outlined text-[20px]">close</span>
@@ -533,16 +518,16 @@
       <div class="space-y-3 text-xs">
         <div>
           <label class="block font-semibold text-stone-600 dark:text-stone-300 mb-1">ข้อความภาษาไทย (Thai Caption):</label>
-          <input type="text" id="editCaptionInput" class="w-full bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl px-3 py-2 text-sm text-[#1d1d1f] dark:text-white focus:outline-none focus:border-emerald-500 font-semibold">
+          <input type="text" id="editCaptionInput" class="w-full bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 font-semibold">
         </div>
         <div>
           <label class="block font-semibold text-stone-600 dark:text-stone-300 mb-1">ท่าทางและอารมณ์ภาษาอังกฤษ (AI Pose Prompt):</label>
-          <textarea id="editPosePromptInput" rows="3" class="w-full bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-3 text-xs text-[#1d1d1f] dark:text-white focus:outline-none focus:border-emerald-500 font-mono"></textarea>
+          <textarea id="editPosePromptInput" rows="3" class="w-full bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-emerald-500 font-mono"></textarea>
         </div>
       </div>
 
-      <div class="flex items-center justify-end gap-2 pt-3 border-t border-black/10 dark:border-white/10">
-        <button onclick="closeEditModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors">ปิด</button>
+      <div class="flex items-center justify-end gap-2 pt-3 border-t border-white/[0.08]">
+        <button onclick="closeEditModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors">ปิด</button>
         <button onclick="saveAndGenerateSlot()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-xs transition-all flex items-center gap-1.5">
           <span class="material-symbols-outlined text-[16px]">play_arrow</span>
           <span>บันทึก & สั่งเจนรูปใหม่</span>
@@ -556,11 +541,11 @@
   <!-- 5. 4x10 POSTER PREVIEW MODAL                            -->
   <!-- ======================================================== -->
   <div id="compositeModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-[#1c1c20] rounded-2xl max-w-4xl w-full p-6 border border-black/10 dark:border-white/10 shadow-2xl flex flex-col gap-4 max-h-[90vh]">
-      <div class="flex items-center justify-between border-b border-black/10 dark:border-white/10 pb-3">
+    <div class="bg-white dark:bg-[#1c1c20] rounded-2xl max-w-4xl w-full p-6 border border-white/[0.08] shadow-2xl flex flex-col gap-4 max-h-[90vh]">
+      <div class="flex items-center justify-between border-b border-white/[0.08] pb-3">
         <div class="flex items-center gap-2">
           <span class="material-symbols-outlined text-emerald-500">grid_view</span>
-          <h3 class="font-bold text-sm text-[#1d1d1f] dark:text-white">โปสเตอร์รวมชุดสติกเกอร์ 4×10 (LINE Composite Sheet)</h3>
+          <h3 class="font-bold text-sm text-white">โปสเตอร์รวมชุดสติกเกอร์ 4×10 (LINE Composite Sheet)</h3>
         </div>
         <button onclick="closeCompositeModal()" class="text-stone-400 hover:text-stone-600 dark:hover:text-stone-200">
           <span class="material-symbols-outlined text-[20px]">close</span>
@@ -581,10 +566,10 @@
   <!-- ======================================================== -->
   <!-- 6. FOOTER (LUXURY BRANDING)                             -->
   <!-- ======================================================== -->
-  <footer class="mt-auto border-t border-black/[0.08] dark:border-white/[0.08] bg-white/50 dark:bg-[#161619]/50 backdrop-blur-md py-6 text-xs text-stone-500">
+  <footer class="mt-auto border-t border-white/[0.08] bg-white/50 dark:bg-[#161619]/50 backdrop-blur-md py-6 text-xs text-stone-500">
     <div class="max-w-[1700px] w-full mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
       <div class="flex items-center gap-2">
-        <span class="font-bold text-[#1d1d1f] dark:text-white">ThaiD LINE Sticker AI Studio</span>
+        <span class="font-bold text-white">ThaiD LINE Sticker AI Studio</span>
         <span>•</span>
         <span>มาตรฐาน LINE Creators Market สากล (370×320, 240×240, 96×74)</span>
       </div>
@@ -627,19 +612,9 @@
     });
 
     // Theme Management
-    function initTheme() {
-      const isDark = document.documentElement.classList.contains('dark');
-      document.getElementById('themeIcon').textContent = isDark ? 'light_mode' : 'dark_mode';
-    }
+    // Fastwork Dark Theme Locked
 
-    function toggleTheme() {
-      const isDark = document.documentElement.classList.contains('dark');
-      if (isDark) {
-        document.documentElement.classList.remove('dark');
-        document.documentElement.classList.add('light');
-        localStorage.setItem('thaid-theme', 'light');
-        document.getElementById('themeIcon').textContent = 'dark_mode';
-      } else {
+    // Fastwork Dark Theme Locked else {
         document.documentElement.classList.remove('light');
         document.documentElement.classList.add('dark');
         localStorage.setItem('thaid-theme', 'dark');
@@ -700,10 +675,10 @@
       const flowBtn = document.getElementById('engineFlowBtn');
       if (engineKey === 'flux') {
         fluxBtn.className = 'p-2 rounded-lg border text-left bg-emerald-500/10 border-emerald-500 text-emerald-600 dark:text-emerald-400';
-        flowBtn.className = 'p-2 rounded-lg border border-stone-200 dark:border-stone-800 text-left text-stone-600 dark:text-stone-400 hover:border-emerald-500/40';
+        flowBtn.className = 'p-2 rounded-lg border border-stone-200 dark:border-stone-800 text-left text-stone-400 hover:border-emerald-500/40';
       } else {
         flowBtn.className = 'p-2 rounded-lg border text-left bg-emerald-500/10 border-emerald-500 text-emerald-600 dark:text-emerald-400';
-        fluxBtn.className = 'p-2 rounded-lg border border-stone-200 dark:border-stone-800 text-left text-stone-600 dark:text-stone-400 hover:border-emerald-500/40';
+        fluxBtn.className = 'p-2 rounded-lg border border-stone-200 dark:border-stone-800 text-left text-stone-400 hover:border-emerald-500/40';
       }
     }
 
@@ -818,7 +793,7 @@
         <div class="p-2.5 rounded-xl border border-stone-200 dark:border-stone-800 hover:border-emerald-500/50 bg-stone-50 dark:bg-stone-900/60 transition-all flex items-center justify-between gap-3 group">
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-1.5 mb-1">
-              <span class="font-bold text-xs text-[#1d1d1f] dark:text-white">${c.caption}</span>
+              <span class="font-bold text-xs text-white">${c.caption}</span>
               <span class="text-[9px] px-1 py-0.2 rounded bg-stone-200 dark:bg-stone-800 text-stone-500 font-mono">${c.category.split('&')[0].trim()}</span>
             </div>
             <p class="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-1">${c.pose}</p>
@@ -885,7 +860,7 @@
         const boxBg = STATE.viewMode === 'checker' ? 'bg-checker' : (STATE.viewMode === 'line-dark' ? 'bg-line-dark' : 'bg-line-light');
 
         html += `
-          <div id="slot-card-${i}" class="bg-white dark:bg-[#161619] rounded-2xl p-3 border border-black/[0.06] dark:border-white/[0.08] shadow-sm flex flex-col gap-2.5 transition-all hover:border-emerald-500/30">
+          <div id="slot-card-${i}" class="bg-[#1b1b1e] rounded-2xl p-3 border border-black/[0.06] dark:border-white/[0.08] shadow-sm flex flex-col gap-2.5 transition-all hover:border-emerald-500/30">
             <!-- Header: Slot Badge & Caption -->
             <div class="flex items-center justify-between">
               <span class="px-1.5 py-0.5 rounded bg-stone-100 dark:bg-stone-800 text-[#1d1d1f] dark:text-stone-300 font-mono text-[10px] font-bold">
@@ -897,7 +872,7 @@
             </div>
 
             <!-- Preview Box (370x320 Ratio) -->
-            <div class="slot-preview-box ${boxBg} rounded-xl aspect-[370/320] flex items-center justify-center border border-black/10 dark:border-white/10 overflow-hidden relative group">
+            <div class="slot-preview-box ${boxBg} rounded-xl aspect-[370/320] flex items-center justify-center border border-white/[0.08] overflow-hidden relative group">
               ${s.ready && s.processed_url ? `
                 <img src="${s.processed_url}" class="w-full h-full object-contain p-2 hover:scale-105 transition-transform">
                 <button onclick="openRematModal(${i})" class="absolute bottom-2 right-2 p-1.5 rounded-lg bg-black/60 hover:bg-emerald-600 text-white opacity-0 group-hover:opacity-100 transition-opacity" title="ปรับแต่งไดคัต / ขอบขาว">
