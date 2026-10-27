@@ -187,7 +187,8 @@ def get_preset_packages(size: int = Query(40)):
     if size not in [8, 16, 24, 40]:
         size = 40
     
-    preset_items = cl.get_preset_48_stickers()[:size]
+    preset_dict = cl.get_preset_48_stickers()
+    preset_items = preset_dict.get("caption_stickers", [])[:size]
     result = []
     for idx, item in enumerate(preset_items, 1):
         result.append({
