@@ -146,7 +146,7 @@
           <span class="text-[#0569ff] font-bold">✦</span>
           <span>หน้าหลัก ThaiD</span>
         </a>
-        <button id="btnTopDownloadZip" onclick="triggerDownloadZip()" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[#171717] hover:bg-black text-white shadow-2xs transition-all hover:scale-[1.02] active:scale-[0.98]"><span class="material-symbols-outlined text-[15px]">folder_zip</span><span>ดาวน์โหลด ZIP</span></button>
+        <button onclick="document.getElementById('inputThemePrompt').scrollIntoView({behavior:'smooth'}); document.getElementById('inputThemePrompt').focus();" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[#171717] hover:bg-black text-white shadow-2xs transition-all hover:scale-[1.02] active:scale-[0.98]"><span class="material-symbols-outlined text-[15px]">palette</span><span>สร้างสติกเกอร์ทันที</span></button>
       </div>
 
     </div>
@@ -615,14 +615,9 @@
     });
 
     // Theme Management
-    // ThaiD Studio Theme
-
-    // ThaiD Studio Theme else {
-        document.documentElement.classList.remove('light');
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('thaid-theme', 'dark');
-        document.getElementById('themeIcon').textContent = 'light_mode';
-      }
+    function initTheme() {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
     }
 
     // Initialize Slot State
