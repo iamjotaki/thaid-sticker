@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth bg-stone-50 text-[#171717]">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ห้องทำงานครีเอเตอร์ (Workspace) | ThaiD LINE Sticker AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Prompt', 'Google Sans', 'Noto Sans Thai', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-stone-50 text-[#171717] font-sans pb-24 selection:bg-[#0569ff]/15 selection:text-[#0569ff]">
+
+  <!-- Toast -->
+  <div id="toast" class="hidden fixed bottom-6 right-6 z-[100] bg-[#171717] text-white px-5 py-3 rounded-2xl text-xs font-medium shadow-2xl flex items-center gap-3">
+    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+    <span id="toastMsg">บันทึกข้อมูลเรียบร้อย</span>
+  </div>
+
+  <!-- 1. THAID FLOATING TOP NAVBAR -->
+  <header class="fixed top-0 inset-x-0 z-[60] pt-4 px-4 sm:px-6 pointer-events-none">
+    <div class="max-w-6xl mx-auto flex items-center justify-between pointer-events-auto bg-white/90 backdrop-blur-xl border border-black/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.04)] rounded-full px-4 sm:px-5 py-2.5 relative">
+      <a href="https://sticker.thaid.online" class="flex items-center gap-2.5 text-[#2b313b] hover:opacity-85 transition-opacity group flex-shrink-0">
+        <div class="w-7 h-7 rounded-lg bg-[#2b313b] flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+            <line x1="9" y1="9" x2="9.01" y2="9"/>
+            <line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="font-bold text-lg tracking-tight text-[#2b313b]">ThaiD</span>
+          <span class="text-xs text-stone-300 font-light">/</span>
+          <span class="text-xs font-semibold text-pink-600 bg-pink-50 px-2 py-0.5 rounded-full border border-pink-200">LINE Sticker</span>
+          <span class="text-xs text-stone-300 font-light hidden sm:inline">/</span>
+          <span class="text-xs text-stone-500 font-medium hidden sm:inline">ห้องสร้างสติกเกอร์ (Workspace)</span>
+        </div>
+      </a>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <a href="https://sticker.thaid.online" class="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-black/[0.08] bg-white hover:bg-stone-50 text-xs font-semibold text-stone-700 shadow-2xs">
+          ← สตูดิโอเจนภาพ
+        </a>
+        
+        <!-- SaaS Dropdown -->
+        <div class="relative">
+          <button type="button" onclick="toggleSaasDropdown()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-black/[0.08] bg-white hover:bg-stone-50 text-xs font-semibold text-[#2b313b] shadow-2xs cursor-pointer">
+            <span class="text-[#0569ff] font-bold text-xs">✦</span>
+            <span>เลือกบริการ SaaS</span>
+            <svg class="w-3 h-3 text-stone-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div id="saasMenu" class="hidden absolute right-0 top-full mt-2 w-72 bg-white/95 backdrop-blur-2xl border border-black/[0.08] rounded-2xl shadow-2xl p-2 z-50 text-left">
+            <div class="px-3 py-1.5 text-[10px] font-bold text-stone-400 uppercase tracking-wider border-b border-black/[0.05] mb-1">ThaiD SaaS Network</div>
+            <a href="https://novel.thaid.online" class="block p-2 rounded-xl hover:bg-stone-50 text-stone-700 text-xs font-medium">Novel Studio (แต่งนิยาย)</a>
+            <a href="https://social.thaid.online" class="block p-2 rounded-xl hover:bg-stone-50 text-stone-700 text-xs font-medium">Social Auto-Poster (โพสต์ข่าว)</a>
+            <a href="https://sticker.thaid.online" class="block p-2 rounded-xl bg-pink-50 text-pink-700 text-xs font-bold">LINE Sticker (สติกเกอร์ไลน์)</a>
+            <a href="https://clip.thaid.online" class="block p-2 rounded-xl hover:bg-stone-50 text-stone-700 text-xs font-medium">Clip AI (วิดีโอสั้น 9:16)</a>
+            <a href="https://chat.thaid.online" class="block p-2 rounded-xl hover:bg-stone-50 text-stone-700 text-xs font-medium">Smart Chat (บอทแอดมิน LINE OA)</a>
+            <a href="https://mockup.thaid.online" class="block p-2 rounded-xl hover:bg-stone-50 text-stone-700 text-xs font-medium">Mockup Studio (สินค้า 4K)</a>
+            <a href="https://vault.thaid.online" class="block p-2 rounded-xl hover:bg-stone-50 text-stone-700 text-xs font-medium">Private Vault (คลังความปลอดภัย)</a>
+          </div>
+        </div>
+
+        <!-- User Profile Pill -->
+        <div class="flex items-center gap-1.5 p-1 pl-1.5 pr-2.5 rounded-full border border-black/[0.08] bg-white shadow-2xs">
+          <img src="https://api.dicebear.com/7.x/bottts/svg?seed=StickerCreator" class="w-5 h-5 rounded-full bg-pink-100" alt="Avatar">
+          <span class="text-xs font-semibold text-[#2b313b]">ครีเอเตอร์ น้องแมวส้ม</span>
+          <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-pink-100 text-pink-700">VIP</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. MAIN CONTENT -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28">
+    
+    <!-- Hero Banner -->
+    <div class="bg-white rounded-3xl border border-black/[0.08] p-6 sm:p-8 shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-[10px] font-bold text-pink-700 bg-pink-50 px-2.5 py-0.5 rounded-full border border-pink-200">
+              🎨 LINE STICKER CREATOR WORKSPACE
+            </span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#171717]">
+            ห้องทำงานครีเอเตอร์ · My Sticker Sets & Exports
+          </h1>
+          <p class="text-xs sm:text-sm text-stone-500 mt-1 max-w-xl leading-relaxed">
+            จัดการชุดสติกเกอร์ไลน์ 40 แอ็กชัน บันทึกคาแรคเตอร์ประจำตัว และดาวน์โหลดไฟล์ ZIP พร้อมส่งขึ้น LINE Creators Market
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <a href="https://sticker.thaid.online" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-pink-600 hover:bg-pink-700 text-white text-xs font-semibold shadow-xs transition-all cursor-pointer">
+            <span>+ สร้างชุดสติกเกอร์ใหม่</span>
+          </a>
+          <button onclick="showToast('กำลังเตรียมไฟล์ ZIP สติกเกอร์ 40 รูป...')" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-2xl border border-black/[0.08] bg-white hover:bg-stone-50 text-xs font-semibold text-stone-700 shadow-xs cursor-pointer">
+            <span>📦 โหลด ZIP ล่าสุด</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 Counter Cards -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 mt-5">
+      <div class="bg-white rounded-2xl border border-black/[0.08] p-4.5 shadow-xs">
+        <div class="text-xs font-bold text-stone-500 mb-1">ชุดสติกเกอร์ทั้งหมด</div>
+        <div class="text-2xl font-black text-pink-600">3 ชุด</div>
+        <div class="text-[11px] text-stone-400 mt-0.5">40 แอ็กชันครบเซ็ต</div>
+      </div>
+      <div class="bg-white rounded-2xl border border-black/[0.08] p-4.5 shadow-xs">
+        <div class="text-xs font-bold text-stone-500 mb-1">รูปที่เจนสำเร็จ (รูป)</div>
+        <div class="text-2xl font-black text-emerald-600">96 รูป</div>
+        <div class="text-[11px] text-stone-400 mt-0.5">ตัดฉากหลังเนียนกริบ</div>
+      </div>
+      <div class="bg-white rounded-2xl border border-black/[0.08] p-4.5 shadow-xs">
+        <div class="text-xs font-bold text-stone-500 mb-1">มาตรฐาน LINE Market</div>
+        <div class="text-2xl font-black text-purple-600">100% ผ่าน</div>
+        <div class="text-[11px] text-stone-400 mt-0.5">370x320 & 96x74</div>
+      </div>
+      <div class="bg-white rounded-2xl border border-black/[0.08] p-4.5 shadow-xs">
+        <div class="text-xs font-bold text-stone-500 mb-1">เครดิตเจนสติกเกอร์</div>
+        <div class="text-2xl font-black text-[#0569ff]">240 รูป</div>
+        <div class="text-[11px] text-stone-400 mt-0.5">VIP Unlimited Pass</div>
+      </div>
+    </div>
+
+    <!-- Segmented Tabs -->
+    <div class="bg-white rounded-2xl border border-black/[0.08] p-1.5 shadow-xs mt-6 flex items-center gap-1.5 overflow-x-auto">
+      <button onclick="switchTab('sets')" id="tab-sets" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#171717] text-white transition-all cursor-pointer">
+        🎨 1. ชุดสติกเกอร์ของฉัน (My Sets)
+      </button>
+      <button onclick="switchTab('export')" id="tab-export" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold text-stone-600 hover:bg-stone-50 transition-all cursor-pointer">
+        📦 2. ไฟล์พร้อมส่ง LINE Market
+      </button>
+      <button onclick="switchTab('characters')" id="tab-characters" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold text-stone-600 hover:bg-stone-50 transition-all cursor-pointer">
+        🐾 3. คาแรคเตอร์ที่บันทึกไว้
+      </button>
+      <button onclick="switchTab('plans')" id="tab-plans" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold text-stone-600 hover:bg-stone-50 transition-all cursor-pointer">
+        💎 4. เครดิต & แพ็กเกจ
+      </button>
+    </div>
+
+    <!-- TAB 1: MY STICKER SETS -->
+    <div id="view-sets" class="tab-view mt-5 space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+        <!-- Set 1 -->
+        <div class="bg-white rounded-2xl border border-black/[0.08] p-5 shadow-xs hover:border-black/[0.2] transition-colors flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-bold text-pink-700 bg-pink-50 px-2 py-0.5 rounded-full border border-pink-200">3D Pixar Chibi</span>
+              <span class="text-[10px] text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full">✓ ครบ 40 รูป</span>
+            </div>
+            <h3 class="text-sm font-bold text-[#171717]">น้องแมวส้มจอมซน (Orange Tabby)</h3>
+            <p class="text-xs text-stone-500 mt-1">ลูกแมวอ้วนกลม ใส่ผ้าพันคอสีเหลือง ท่าทางน่ารัก 40 แอ็กชัน</p>
+            <div class="mt-4 pt-3 border-t border-black/[0.05] text-[11px] text-stone-500 flex justify-between">
+              <span>ขนาดไฟล์: 14.8 MB</span>
+              <span>ไดคัตขอบขาว: เปิด</span>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-black/[0.05] flex items-center justify-between">
+            <button onclick="showToast('กำลังดาวน์โหลด ZIP 40 รูป')" class="text-xs font-bold text-pink-600 hover:underline">📥 โหลด ZIP สติกเกอร์</button>
+            <a href="https://sticker.thaid.online" class="text-xs font-semibold text-stone-500 hover:text-stone-900">แก้ไขชุด →</a>
+          </div>
+        </div>
+
+        <!-- Set 2 -->
+        <div class="bg-white rounded-2xl border border-black/[0.08] p-5 shadow-xs hover:border-black/[0.2] transition-colors flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-200">Kawaii Doodle</span>
+              <span class="text-[10px] text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full">✓ ครบ 40 รูป</span>
+            </div>
+            <h3 class="text-sm font-bold text-[#171717]">เจ้ากระต่ายน้อย ออฟฟิศไลฟ์</h3>
+            <p class="text-xs text-stone-500 mt-1">กระต่ายหูยาวมินิมอล คำพูดคนทำงาน ตอบอีเมล สู้ชีวิต</p>
+            <div class="mt-4 pt-3 border-t border-black/[0.05] text-[11px] text-stone-500 flex justify-between">
+              <span>ขนาดไฟล์: 11.2 MB</span>
+              <span>ไดคัตขอบขาว: เปิด</span>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-black/[0.05] flex items-center justify-between">
+            <button onclick="showToast('กำลังดาวน์โหลด ZIP 40 รูป')" class="text-xs font-bold text-pink-600 hover:underline">📥 โหลด ZIP สติกเกอร์</button>
+            <a href="https://sticker.thaid.online" class="text-xs font-semibold text-stone-500 hover:text-stone-900">แก้ไขชุด →</a>
+          </div>
+        </div>
+
+        <!-- Set 3 -->
+        <div class="bg-white rounded-2xl border border-black/[0.08] p-5 shadow-xs hover:border-black/[0.2] transition-colors flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded-full border border-indigo-200">Cute 2D Anime</span>
+              <span class="text-[10px] text-amber-600 font-semibold bg-amber-50 px-2 py-0.5 rounded-full">⏳ เจนไป 16/40</span>
+            </div>
+            <h3 class="text-sm font-bold text-[#171717]">เด็กสาวเวทมนตร์ Chibi</h3>
+            <p class="text-xs text-stone-500 mt-1">สาวน้อยผมทวินเทลสีชมพู ถือคฑาดาววิบวับ ลายเส้นอนิเมะ</p>
+            <div class="mt-4 pt-3 border-t border-black/[0.05] text-[11px] text-stone-500 flex justify-between">
+              <span>ขนาดไฟล์: 5.6 MB</span>
+              <span>ไดคัตขอบขาว: เปิด</span>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-black/[0.05] flex items-center justify-between">
+            <a href="https://sticker.thaid.online" class="text-xs font-bold text-pink-600 hover:underline">เจนต่อให้ครบ 40 →</a>
+            <button onclick="showToast('ดาวน์โหลดรูปเท่าที่มี')" class="text-xs font-semibold text-stone-500 hover:text-stone-900">📥 โหลดพรีวิว</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 2: EXPORT SPECS -->
+    <div id="view-export" class="tab-view hidden mt-5 bg-white rounded-3xl border border-black/[0.08] p-6 shadow-xs">
+      <h2 class="text-base font-bold text-[#171717] pb-3 border-b border-black/[0.06]">โครงสร้างไฟล์พร้อมส่ง LINE Creators Market</h2>
+      <div class="mt-4 space-y-3 text-xs max-w-xl">
+        <div class="p-3.5 rounded-xl border border-black/[0.06] bg-stone-50/50 flex justify-between items-center">
+          <div>
+            <strong class="text-stone-900">main.png (รูปหน้าปกชุดสติกเกอร์)</strong>
+            <div class="text-[11px] text-stone-400">ขนาด 240 x 240 px · โปร่งใส PNG</div>
+          </div>
+          <span class="text-emerald-600 font-bold">✓ พร้อมแล้ว</span>
+        </div>
+        <div class="p-3.5 rounded-xl border border-black/[0.06] bg-stone-50/50 flex justify-between items-center">
+          <div>
+            <strong class="text-stone-900">tab.png (รูปแท็บแสดงในห้องแชท)</strong>
+            <div class="text-[11px] text-stone-400">ขนาด 96 x 74 px · โปร่งใส PNG</div>
+          </div>
+          <span class="text-emerald-600 font-bold">✓ พร้อมแล้ว</span>
+        </div>
+        <div class="p-3.5 rounded-xl border border-black/[0.06] bg-stone-50/50 flex justify-between items-center">
+          <div>
+            <strong class="text-stone-900">01.png - 40.png (รูปสติกเกอร์ 40 แอ็กชัน)</strong>
+            <div class="text-[11px] text-stone-400">ขนาด 370 x 320 px (Margin 10px) · โปร่งใส PNG ไดคัต</div>
+          </div>
+          <span class="text-emerald-600 font-bold">✓ ครบ 40 ไฟล์</span>
+        </div>
+        <button onclick="showToast('กำลังดาวน์โหลดไฟล์ ZIP สมบูรณ์...')" class="w-full py-3 bg-pink-600 hover:bg-pink-700 text-white font-bold rounded-2xl shadow-xs transition-all cursor-pointer text-center mt-2">
+          ดาวน์โหลด All-in-One Package (.ZIP) เพื่อนำไปอัปโหลดทันที
+        </button>
+      </div>
+    </div>
+
+    <!-- TAB 3: CHARACTERS -->
+    <div id="view-characters" class="tab-view hidden mt-5 bg-white rounded-3xl border border-black/[0.08] p-6 shadow-xs">
+      <div class="flex items-center justify-between pb-3 border-b border-black/[0.06]">
+        <h2 class="text-base font-bold text-[#171717]">คาแรคเตอร์ประจำตัวที่บันทึกไว้</h2>
+        <button onclick="showToast('เปิดหน้าต่างบันทึกตัวละคร')" class="px-3.5 py-2 rounded-xl bg-pink-600 text-white text-xs font-semibold">+ เพิ่มตัวละคร</button>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 text-xs">
+        <div class="p-4 rounded-2xl border border-black/[0.06] bg-stone-50/50">
+          <div class="font-bold text-pink-700">ลูกแมวอ้วนกลม ลายส้มขาว (Orange Tabby)</div>
+          <p class="text-stone-500 mt-1">สวมผ้าพันคอไหมพรมสีเหลือง ตาโตแป๋วแหวว น่ารักน่าเอ็นดู สไตล์ 3D Chibi</p>
+        </div>
+        <div class="p-4 rounded-2xl border border-black/[0.06] bg-stone-50/50">
+          <div class="font-bold text-purple-700">กระต่ายขาวออฟฟิศ (Office Bunny)</div>
+          <p class="text-stone-500 mt-1">กระต่ายหูยาวถือถ้วยกาแฟ ตาคล้ำเล็กน้อย สไตล์มินิมอลดูเดิ้ล ลายเส้นน่ารัก</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: PLANS -->
+    <div id="view-plans" class="tab-view hidden mt-5 bg-white rounded-3xl border border-black/[0.08] p-6 shadow-xs">
+      <h2 class="text-base font-bold text-[#171717] pb-3 border-b border-black/[0.06]">เครดิต & การต่ออายุการใช้งาน</h2>
+      <div class="mt-4 p-5 rounded-2xl bg-pink-50/30 border border-pink-200 max-w-lg text-xs space-y-3">
+        <span class="text-[10px] font-bold text-pink-700 bg-pink-100 px-2 py-0.5 rounded-full">VIP AGENCY CREATOR</span>
+        <div class="text-xl font-bold text-pink-950">เจนได้ 40 แอ็กชันเต็มเซ็ตไม่จำกัด</div>
+        <p class="text-stone-500 leading-relaxed">แพ็กเกจของคุณเปิดใช้งานระบบ Flux Turbo Engine ความเร็วสูง 4-8 วินาทีต่อภาพ พร้อมระบบตัดฉากหลัง Die-cut ขอบขาวอัตโนมัติ</p>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function toggleSaasDropdown() {
+      const menu = document.getElementById('saasMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-view').forEach(v => v.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('bg-[#171717]', 'text-white');
+        b.classList.add('text-stone-600');
+      });
+
+      const activeView = document.getElementById('view-' + tabId);
+      const activeBtn = document.getElementById('tab-' + tabId);
+      if (activeView) activeView.classList.remove('hidden');
+      if (activeBtn) {
+        activeBtn.classList.add('bg-[#171717]', 'text-white');
+        activeBtn.classList.remove('text-stone-600');
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.innerText = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth bg-stone-50 text-[#171717]">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LINE Sticker Admin Portal | ThaiD</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Prompt', 'Google Sans', 'Noto Sans Thai', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-stone-50 text-[#171717] font-sans pb-24 selection:bg-[#0569ff]/15 selection:text-[#0569ff]">
+
+  <!-- Toast -->
+  <div id="toast" class="hidden fixed bottom-6 right-6 z-[100] bg-[#171717] text-white px-5 py-3 rounded-2xl text-xs font-medium shadow-2xl flex items-center gap-3">
+    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+    <span id="toastMsg">บันทึกข้อมูลเรียบร้อย</span>
+  </div>
+
+  <!-- 1. THAID FLOATING TOP NAVBAR -->
+  <header class="fixed top-0 inset-x-0 z-[60] pt-4 px-4 sm:px-6 pointer-events-none">
+    <div class="max-w-6xl mx-auto flex items-center justify-between pointer-events-auto bg-white/90 backdrop-blur-xl border border-black/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.04)] rounded-full px-4 sm:px-5 py-2.5 relative">
+      <a href="https://sticker.thaid.online" class="flex items-center gap-2.5 text-[#2b313b] hover:opacity-85 transition-opacity group flex-shrink-0">
+        <div class="w-7 h-7 rounded-lg bg-[#2b313b] flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+            <line x1="9" y1="9" x2="9.01" y2="9"/>
+            <line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="font-bold text-lg tracking-tight text-[#2b313b]">ThaiD</span>
+          <span class="text-xs text-stone-300 font-light">/</span>
+          <span class="text-xs font-semibold text-pink-600 bg-pink-50 px-2 py-0.5 rounded-full border border-pink-200">LINE Sticker</span>
+          <span class="text-xs text-stone-300 font-light hidden sm:inline">/</span>
+          <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-200">Admin Portal</span>
+        </div>
+      </a>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <a href="https://sticker.thaid.online/dashboard" class="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-black/[0.08] bg-white hover:bg-stone-50 text-xs font-semibold text-stone-700 shadow-2xs">
+          ← หน้า Dashboard
+        </a>
+        
+        <!-- SaaS Dropdown -->
+        <div class="relative">
+          <button type="button" onclick="toggleSaasDropdown()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-black/[0.08] bg-white hover:bg-stone-50 text-xs font-semibold text-[#2b313b] shadow-2xs cursor-pointer">
+            <span class="text-[#0569ff] font-bold text-xs">✦</span>
+            <span>เลือกบริการ SaaS</span>
+            <svg class="w-3 h-3 text-stone-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div id="saasMenu" class="hidden absolute right-0 top-full mt-2 w-72 bg-white/95 backdrop-blur-2xl border border-black/[0.08] rounded-2xl shadow-2xl p-2 z-50 text-left">
+            <div class="px-3 py-1.5 text-[10px] font-bold text-stone-400 uppercase tracking-wider border-b border-black/[0.05] mb-1">ThaiD SaaS Network</div>
+            <a href="https://novel.thaid.online" class="block p-2 rounded-xl hover:bg-stone-50 text-stone-700 text-xs font-medium">Novel Studio (แต่งนิยาย)</a>
+            <a href="https://social.thaid.online" class="block p-2 rounded-xl hover:bg-stone-50 text-stone-700 text-xs font-medium">Social Auto-Poster (โพสต์ข่าว)</a>
+            <a href="https://sticker.thaid.online" class="block p-2 rounded-xl bg-pink-50 text-pink-700 text-xs font-bold">LINE Sticker (สติกเกอร์ไลน์)</a>
+            <a href="https://clip.thaid.online" class="block p-2 rounded-xl hover:bg-stone-50 text-stone-700 text-xs font-medium">Clip AI (วิดีโอสั้น 9:16)</a>
+            <a href="https://chat.thaid.online" class="block p-2 rounded-xl hover:bg-stone-50 text-stone-700 text-xs font-medium">Smart Chat (บอทแอดมิน LINE OA)</a>
+            <a href="https://mockup.thaid.online" class="block p-2 rounded-xl hover:bg-stone-50 text-stone-700 text-xs font-medium">Mockup Studio (สินค้า 4K)</a>
+            <a href="https://vault.thaid.online" class="block p-2 rounded-xl hover:bg-stone-50 text-stone-700 text-xs font-medium">Private Vault (คลังความปลอดภัย)</a>
+          </div>
+        </div>
+
+        <!-- Admin Profile Pill -->
+        <div class="flex items-center gap-1.5 p-1 pl-1.5 pr-2.5 rounded-full border border-black/[0.08] bg-white shadow-2xs">
+          <span class="w-5 h-5 rounded-full bg-purple-600 text-white text-[10px] font-bold flex items-center justify-center">👑</span>
+          <span class="text-xs font-semibold text-[#2b313b]">Admin Boss</span>
+          <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-purple-100 text-purple-700">SUPER</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. MAIN CONTENT -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28">
+    
+    <!-- Hero Banner -->
+    <div class="bg-white rounded-3xl border border-black/[0.08] p-6 sm:p-8 shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-[10px] font-bold text-pink-700 bg-pink-50 px-2.5 py-0.5 rounded-full border border-pink-200">
+              👑 STICKER OPERATIONS HQ
+            </span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#171717]">
+            ระบบควบคุมหลังบ้าน · LINE Sticker HQ
+          </h1>
+          <p class="text-xs sm:text-sm text-stone-500 mt-1 max-w-xl leading-relaxed">
+            ตั้งค่าสไตล์ลายเส้น AI คลังคำคม 40 แอ็กชัน และควบคุมเอนจิน Flux Turbo กับระบบไดคัตขอบขาว
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <button onclick="showToast('รีเฟรชคิวและสถานะเอนจินแล้ว')" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-2xl border border-black/[0.08] bg-white hover:bg-stone-50 text-xs font-semibold text-stone-700 shadow-xs cursor-pointer">
+            <span>🔄 รีเฟรช</span>
+          </button>
+          <a href="https://thaid.online/admin" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold shadow-xs transition-all cursor-pointer">
+            <span>← ThaiD Super Admin</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 Solid Counter Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3.5 mt-5">
+      <div class="bg-white rounded-2xl border border-black/[0.08] p-4.5 shadow-xs">
+        <div class="text-xs font-bold text-stone-500 mb-1">ครีเอเตอร์ทั้งหมด</div>
+        <div class="text-2xl font-black text-pink-600">210 คน</div>
+        <div class="text-[11px] text-stone-400 mt-0.5">ในระบบ Sticker</div>
+      </div>
+      <div class="bg-white rounded-2xl border border-black/[0.08] p-4.5 shadow-xs">
+        <div class="text-xs font-bold text-stone-500 mb-1">ชุดสติกเกอร์ที่สร้าง</div>
+        <div class="text-2xl font-black text-emerald-600">580 เซ็ต</div>
+        <div class="text-[11px] text-stone-400 mt-0.5">40 แอ็กชันพร้อมใช้</div>
+      </div>
+      <div class="bg-white rounded-2xl border border-black/[0.08] p-4.5 shadow-xs">
+        <div class="text-xs font-bold text-stone-500 mb-1">รูปที่ผ่านไดคัต AI</div>
+        <div class="text-2xl font-black text-purple-600">18,400 รูป</div>
+        <div class="text-[11px] text-stone-400 mt-0.5">ขอบขาวเนียน 100%</div>
+      </div>
+      <div class="bg-white rounded-2xl border border-black/[0.08] p-4.5 shadow-xs">
+        <div class="text-xs font-bold text-stone-500 mb-1">ความแม่นยำ Die-cut</div>
+        <div class="text-2xl font-black text-amber-500">99.8%</div>
+        <div class="text-[11px] text-stone-400 mt-0.5">Auto-Matting Engine</div>
+      </div>
+      <div class="bg-white rounded-2xl border border-black/[0.08] p-4.5 shadow-xs col-span-2 md:col-span-1">
+        <div class="text-xs font-bold text-stone-500 mb-1">ความเร็วเจนภาพ</div>
+        <div class="text-2xl font-black text-[#0569ff]">3.2 วิ/รูป</div>
+        <div class="text-[11px] text-stone-400 mt-0.5">Flux Turbo REST Pool</div>
+      </div>
+    </div>
+
+    <!-- Segmented Tabs -->
+    <div class="bg-white rounded-2xl border border-black/[0.08] p-1.5 shadow-xs mt-6 flex items-center gap-1.5 overflow-x-auto">
+      <button onclick="switchTab('styles')" id="tab-styles" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#171717] text-white transition-all cursor-pointer">
+        🎨 1. คลังสไตล์ลายเส้น (Styles)
+      </button>
+      <button onclick="switchTab('captions')" id="tab-captions" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold text-stone-600 hover:bg-stone-50 transition-all cursor-pointer">
+        📝 2. คลังคำคม 40 แอ็กชัน (Captions)
+      </button>
+      <button onclick="switchTab('engines')" id="tab-engines" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold text-stone-600 hover:bg-stone-50 transition-all cursor-pointer">
+        ⚡ 3. เอนจิน AI & Die-Cut Config
+      </button>
+      <button onclick="switchTab('creators')" id="tab-creators" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold text-stone-600 hover:bg-stone-50 transition-all cursor-pointer">
+        👥 4. สมาชิก & เครดิต (Users)
+      </button>
+    </div>
+
+    <!-- TAB 1: ART STYLES -->
+    <div id="view-styles" class="tab-view mt-5 bg-white rounded-3xl border border-black/[0.08] p-6 shadow-xs">
+      <div class="flex items-center justify-between pb-4 border-b border-black/[0.06]">
+        <div>
+          <h2 class="text-base font-bold text-[#171717]">คลังสไตล์ลายเส้น AI ที่เปิดให้บริการ</h2>
+          <p class="text-xs text-stone-500 mt-0.5">ปรับแต่ง Prompt Template ของแต่ละสไตล์เพื่อควบคุมความน่ารักของสติกเกอร์</p>
+        </div>
+        <button onclick="showToast('เปิดหน้าต่างเพิ่มสไตล์ใหม่')" class="px-3.5 py-2 rounded-xl bg-pink-600 text-white text-xs font-semibold">+ เพิ่มสไตล์ใหม่</button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5 text-xs">
+        <div class="p-4 rounded-2xl border border-black/[0.06] bg-stone-50/50">
+          <div class="font-bold text-pink-700">3D Pixar Chibi (ฮิตที่สุด)</div>
+          <div class="text-stone-500 mt-1">3D การ์ตูนดิสนีย์ โมเดลนุ่มเนียนตา แสงเงาอบอุ่น</div>
+          <div class="mt-2 text-[10px] text-stone-400 font-mono">lora_weight: 0.85 · steps: 24</div>
+        </div>
+        <div class="p-4 rounded-2xl border border-black/[0.06] bg-stone-50/50">
+          <div class="font-bold text-indigo-700">Cute 2D Anime</div>
+          <div class="text-stone-500 mt-1">อนิเมะน่ารัก เส้นเวกเตอร์คมชัด สีสดสไตล์ญี่ปุ่น</div>
+          <div class="mt-2 text-[10px] text-stone-400 font-mono">lora_weight: 0.90 · steps: 20</div>
+        </div>
+        <div class="p-4 rounded-2xl border border-black/[0.06] bg-stone-50/50">
+          <div class="font-bold text-purple-700">Kawaii Doodle</div>
+          <div class="text-stone-500 mt-1">ดูเดิ้ลวาดมือน่ารัก สีพาสเทลคลีนๆ เส้นเรียบง่าย</div>
+          <div class="mt-2 text-[10px] text-stone-400 font-mono">lora_weight: 0.75 · steps: 18</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: CAPTIONS -->
+    <div id="view-captions" class="tab-view hidden mt-5 bg-white rounded-3xl border border-black/[0.08] p-6 shadow-xs">
+      <h2 class="text-base font-bold text-[#171717] pb-3 border-b border-black/[0.06]">คลังคำคม 40 แอ็กชัน (Official LINE Caption Master Table)</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 text-xs">
+        <div class="p-3 rounded-xl border border-black/[0.05] bg-stone-50">01. สวัสดี / ทักทาย</div>
+        <div class="p-3 rounded-xl border border-black/[0.05] bg-stone-50">02. ขอบคุณนะ</div>
+        <div class="p-3 rounded-xl border border-black/[0.05] bg-stone-50">03. สู้ๆ นะ / เป็นกำลังใจ</div>
+        <div class="p-3 rounded-xl border border-black/[0.05] bg-stone-50">04. โอเค รับทราบ</div>
+        <div class="p-3 rounded-xl border border-black/[0.05] bg-stone-50">05. ฝันดี ราตรีสวัสดิ์</div>
+        <div class="p-3 rounded-xl border border-black/[0.05] bg-stone-50">06. ขอโทษนะ</div>
+        <div class="p-3 rounded-xl border border-black/[0.05] bg-stone-50">07. ยินดีด้วยจ้า</div>
+        <div class="p-3 rounded-xl border border-black/[0.05] bg-stone-50">08. เหนื่อยจังเลย</div>
+      </div>
+    </div>
+
+    <!-- TAB 3: ENGINES -->
+    <div id="view-engines" class="tab-view hidden mt-5 bg-white rounded-3xl border border-black/[0.08] p-6 shadow-xs">
+      <h2 class="text-base font-bold text-[#171717] pb-3 border-b border-black/[0.06]">การตั้งค่า AI Generation & Die-Cut Engine</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 text-xs">
+        <div class="p-4 rounded-2xl border border-emerald-200 bg-emerald-50/40">
+          <div class="font-bold text-emerald-800">Flux Turbo REST Engine (Active)</div>
+          <p class="text-stone-500 mt-1">ความเร็ว 4-8 วินาที/รูป ไม่มีคิวค้าง เหมาะสำหรับงาน Production</p>
+        </div>
+        <div class="p-4 rounded-2xl border border-blue-200 bg-blue-50/40">
+          <div class="font-bold text-blue-800">Auto-Remat Die-Cut Processor</div>
+          <p class="text-stone-500 mt-1">ตัดฉากหลังอัตโนมัติพร้อมเติมเส้นขอบขาว 4px ตามมาตรฐานสติกเกอร์ไลน์</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: CREATORS -->
+    <div id="view-creators" class="tab-view hidden mt-5 bg-white rounded-3xl border border-black/[0.08] p-6 shadow-xs">
+      <h2 class="text-base font-bold text-[#171717] pb-3 border-b border-black/[0.06]">สมาชิก & การจัดการเครดิต (Creators)</h2>
+      <div class="overflow-x-auto mt-4 text-xs">
+        <table class="w-full text-left">
+          <thead>
+            <tr class="border-b border-black/[0.06] text-stone-400 font-bold uppercase text-[10px]">
+              <th class="py-2.5 px-3">ครีเอเตอร์</th>
+              <th class="py-2.5 px-3">แพ็กเกจ</th>
+              <th class="py-2.5 px-3 text-center">เครดิตรูป</th>
+              <th class="py-2.5 px-3 text-right">การจัดการ</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-black/[0.04]">
+            <tr class="hover:bg-stone-50">
+              <td class="py-3 px-3 font-bold text-stone-900">ครีเอเตอร์ น้องแมวส้ม</td>
+              <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-pink-100 text-pink-700 font-bold text-[10px]">VIP</span></td>
+              <td class="py-3 px-3 text-center font-bold text-pink-600">240 รูป</td>
+              <td class="py-3 px-3 text-right"><button onclick="showToast('เติมเครดิต 40 รูปสำเร็จ')" class="px-2.5 py-1 rounded bg-pink-50 text-pink-700 font-semibold text-[11px]">เติมเครดิต</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function toggleSaasDropdown() {
+      const menu = document.getElementById('saasMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-view').forEach(v => v.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('bg-[#171717]', 'text-white');
+        b.classList.add('text-stone-600');
+      });
+
+      const activeView = document.getElementById('view-' + tabId);
+      const activeBtn = document.getElementById('tab-' + tabId);
+      if (activeView) activeView.classList.remove('hidden');
+      if (activeBtn) {
+        activeBtn.classList.add('bg-[#171717]', 'text-white');
+        activeBtn.classList.remove('text-stone-600');
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.innerText = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
