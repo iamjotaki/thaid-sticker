@@ -315,15 +315,15 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-[#0569ff]">face</span>
-              <h2 class="text-sm font-bold uppercase tracking-wider text-stone-500 dark:text-[#737373]">กำหนดคาแรคเตอร์ & ลายเส้น (Character Definition)</h2>
+              <h2 class="text-sm font-bold uppercase tracking-wider text-[#171717]">กำหนดคาแรคเตอร์ & ลายเส้น (Character Definition)</h2>
             </div>
             <!-- Preset Size Selector -->
             <div class="flex items-center gap-1.5 text-xs">
-              <span class="text-stone-500 dark:text-[#737373]">จำนวนรูป:</span>
+              <span class="text-stone-700 font-semibold">จำนวนรูป:</span>
               <div class="inline-flex rounded-lg bg-stone-100 dark:bg-stone-800 p-0.5 border border-black/5 dark:border-white/5">
-                <button onclick="changePackageSize(8)" class="size-pill px-2.5 py-0.5 rounded text-[11px] font-semibold text-stone-600 dark:text-stone-700 hover:text-[#0569ff]" data-size="8">8 รูป</button>
-                <button onclick="changePackageSize(16)" class="size-pill px-2.5 py-0.5 rounded text-[11px] font-semibold text-stone-600 dark:text-stone-700 hover:text-[#0569ff]" data-size="16">16 รูป</button>
-                <button onclick="changePackageSize(24)" class="size-pill px-2.5 py-0.5 rounded text-[11px] font-semibold text-stone-600 dark:text-stone-700 hover:text-[#0569ff]" data-size="24">24 รูป</button>
+                <button onclick="changePackageSize(8)" class="size-pill px-2.5 py-0.5 rounded text-[11px] font-semibold text-stone-800 font-bold hover:text-[#0569ff]" data-size="8">8 รูป</button>
+                <button onclick="changePackageSize(16)" class="size-pill px-2.5 py-0.5 rounded text-[11px] font-semibold text-stone-800 font-bold hover:text-[#0569ff]" data-size="16">16 รูป</button>
+                <button onclick="changePackageSize(24)" class="size-pill px-2.5 py-0.5 rounded text-[11px] font-semibold text-stone-800 font-bold hover:text-[#0569ff]" data-size="24">24 รูป</button>
                 <button onclick="changePackageSize(40)" class="size-pill active px-2.5 py-0.5 rounded text-[11px] font-semibold bg-[#171717] text-white shadow-xs" data-size="40">40 รูป (เต็มเซ็ต)</button>
               </div>
             </div>
@@ -332,7 +332,7 @@
           <!-- Character Prompt Input -->
           <div>
             <div class="relative">
-              <input id="inputCharacterDesc" type="text" value="ลูกแมวสามสีตัวอ้วนกลม ใส่ผ้าพันคอไหมพรมสีเหลือง ตาโตแป๋วแหวว น่ารักน่าเอ็นดู" placeholder="ระบุคาแรคเตอร์ เช่น ลูกหมาชิบะแก้มป่องใส่หมวกฟาง หรือ เด็กผู้หญิงผมบ็อบสวมเอี๊ยมยีนส์..." class="w-full bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-stone-400 focus:outline-none focus:border-[#0569ff] focus:ring-1 focus:ring-emerald-500 transition-all font-medium">
+              <input id="inputCharacterDesc" type="text" value="ลูกแมวสามสีตัวอ้วนกลม ใส่ผ้าพันคอไหมพรมสีเหลือง ตาโตแป๋วแหวว น่ารักน่าเอ็นดู" placeholder="ระบุคาแรคเตอร์ เช่น ลูกหมาชิบะแก้มป่องใส่หมวกฟาง หรือ เด็กผู้หญิงผมบ็อบสวมเอี๊ยมยีนส์..." class="w-full bg-stone-50 border border-stone-300 rounded-xl px-4 py-2.5 text-sm text-[#171717] font-medium placeholder-stone-400 focus:outline-none focus:border-[#0569ff] focus:ring-1 focus:ring-emerald-500 transition-all font-medium">
               <button onclick="fillRandomCharacter()" class="absolute right-2 top-2 px-2 py-1 rounded-lg bg-stone-200 dark:bg-stone-800 hover:bg-stone-300 dark:hover:bg-stone-700 text-[11px] font-semibold text-stone-600 dark:text-stone-700 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-[13px]">casino</span>
                 <span>สุ่มตัวละคร</span>
@@ -347,27 +347,27 @@
               <button onclick="setArtStyle('chibi_3d')" class="art-style-card active p-2.5 rounded-xl border text-left transition-all bg-[#0569ff]/10 border-[#0569ff] text-[#0569ff]" data-style="chibi_3d">
                 <div class="text-lg mb-1">🧸</div>
                 <div class="text-xs font-bold">3D Pixar Chibi</div>
-                <div class="text-[10px] text-stone-500 dark:text-[#737373] line-clamp-1">3D การ์ตูนดิสนีย์ นุ่มนวล</div>
+                <div class="text-[10px] text-stone-600 font-medium line-clamp-1">3D การ์ตูนดิสนีย์ นุ่มนวล</div>
               </button>
               <button onclick="setArtStyle('cute_2d')" class="art-style-card p-2.5 rounded-xl border border-stone-200 dark:border-stone-800 hover:border-[#0569ff]/50 text-left transition-all bg-stone-50 dark:bg-stone-900/50" data-style="cute_2d">
                 <div class="text-lg mb-1">🌸</div>
                 <div class="text-xs font-bold text-[#1d1d1f] dark:text-stone-200">Cute 2D Anime</div>
-                <div class="text-[10px] text-stone-500 dark:text-[#737373] line-clamp-1">อนิเมะญี่ปุ่น เส้นเวกเตอร์</div>
+                <div class="text-[10px] text-stone-600 font-medium line-clamp-1">อนิเมะญี่ปุ่น เส้นเวกเตอร์</div>
               </button>
               <button onclick="setArtStyle('kawaii_doodle')" class="art-style-card p-2.5 rounded-xl border border-stone-200 dark:border-stone-800 hover:border-[#0569ff]/50 text-left transition-all bg-stone-50 dark:bg-stone-900/50" data-style="kawaii_doodle">
                 <div class="text-lg mb-1">✏️</div>
                 <div class="text-xs font-bold text-[#1d1d1f] dark:text-stone-200">Kawaii Doodle</div>
-                <div class="text-[10px] text-stone-500 dark:text-[#737373] line-clamp-1">ดูเดิ้ลวาดมือ มินิมอล</div>
+                <div class="text-[10px] text-stone-600 font-medium line-clamp-1">ดูเดิ้ลวาดมือ มินิมอล</div>
               </button>
               <button onclick="setArtStyle('retro_pixel')" class="art-style-card p-2.5 rounded-xl border border-stone-200 dark:border-stone-800 hover:border-[#0569ff]/50 text-left transition-all bg-stone-50 dark:bg-stone-900/50" data-style="retro_pixel">
                 <div class="text-lg mb-1">👾</div>
                 <div class="text-xs font-bold text-[#1d1d1f] dark:text-stone-200">Retro Pixel</div>
-                <div class="text-[10px] text-stone-500 dark:text-[#737373] line-clamp-1">พิกเซลอาร์ต 16-Bit คมๆ</div>
+                <div class="text-[10px] text-stone-600 font-medium line-clamp-1">พิกเซลอาร์ต 16-Bit คมๆ</div>
               </button>
               <button onclick="setArtStyle('watercolor')" class="art-style-card p-2.5 rounded-xl border border-stone-200 dark:border-stone-800 hover:border-[#0569ff]/50 text-left transition-all bg-stone-50 dark:bg-stone-900/50" data-style="watercolor">
                 <div class="text-lg mb-1">🎨</div>
                 <div class="text-xs font-bold text-[#1d1d1f] dark:text-stone-200">Watercolor</div>
-                <div class="text-[10px] text-stone-500 dark:text-[#737373] line-clamp-1">สีน้ำนิทาน อบอุ่นละมุน</div>
+                <div class="text-[10px] text-stone-600 font-medium line-clamp-1">สีน้ำนิทาน อบอุ่นละมุน</div>
               </button>
             </div>
           </div>
@@ -377,7 +377,7 @@
         <div class="lg:col-span-4 flex flex-col justify-between gap-4 p-4 rounded-xl bg-stone-50 dark:bg-stone-900/70 border border-stone-200/80 dark:border-stone-800">
           <div>
             <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-[#737373]">ระบบ AI เจนเนอเรเตอร์</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#171717]">ระบบ AI เจนเนอเรเตอร์</span>
               <span class="text-[11px] font-semibold text-[#0569ff]">REST API Ready</span>
             </div>
 
@@ -460,7 +460,7 @@
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
             <span class="material-symbols-outlined text-[#0569ff] text-[20px]">menu_book</span>
-            <h3 class="font-bold text-sm text-white">คลังแคปชัน & ท่าทาง (530+ ข้อความ)</h3>
+            <h3 class="font-bold text-sm text-[#171717]">คลังแคปชัน & ท่าทาง (530+ ข้อความ)</h3>
           </div>
           <span id="captionCountBadge" class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-[#737373]">
             530 รายการ
@@ -502,7 +502,7 @@
           <div class="flex items-center gap-3">
             <div class="flex items-center gap-1.5 text-xs font-semibold text-stone-500 dark:text-[#737373]">
               <span class="material-symbols-outlined text-[#0569ff] text-[18px]">collections</span>
-              <span>เซ็ตสติกเกอร์: <strong id="slotsCountLabel" class="text-white font-bold">40 รูป</strong></span>
+              <span class="text-stone-800 font-medium">เซ็ตสติกเกอร์: <strong id="slotsCountLabel" class="text-[#171717] font-bold">40 รูป</strong></span>
             </div>
             <span class="text-stone-700 dark:text-stone-700">|</span>
             <div class="flex items-center gap-1 text-xs text-stone-500 dark:text-[#737373]">
@@ -543,9 +543,9 @@
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-1.5 mb-0.5">
                 <span class="px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-500 border border-amber-500/20 text-[10px] font-bold">MAIN.PNG</span>
-                <span class="text-xs font-bold text-white">ภาพปกชุดสติกเกอร์</span>
+                <span class="text-xs font-bold text-[#171717]">ภาพปกชุดสติกเกอร์</span>
               </div>
-              <p class="text-[11px] text-stone-500 dark:text-[#737373] mb-2">แสดงบนหน้าร้าน LINE STORE (240×240 px)</p>
+              <p class="text-[11px] text-stone-600 font-medium mb-2">แสดงบนหน้าร้าน LINE STORE (240×240 px)</p>
               <button onclick="generateSpecialSlot('main')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-stone-800 hover:bg-[#0569ff] hover:text-white text-[11px] font-semibold text-stone-600 dark:text-stone-700 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-[13px]">sync</span>
                 <span>สร้างจากรูปที่ 1</span>
@@ -565,9 +565,9 @@
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-1.5 mb-0.5">
                 <span class="px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-500 border border-blue-500/20 text-[10px] font-bold">TAB.PNG</span>
-                <span class="text-xs font-bold text-white">ไอคอนแถบห้องแชท</span>
+                <span class="text-xs font-bold text-[#171717]">ไอคอนแถบห้องแชท</span>
               </div>
-              <p class="text-[11px] text-stone-500 dark:text-[#737373] mb-2">แสดงบนแถบเลือกสติกเกอร์ (96×74 px)</p>
+              <p class="text-[11px] text-stone-600 font-medium mb-2">แสดงบนแถบเลือกสติกเกอร์ (96×74 px)</p>
               <button onclick="generateSpecialSlot('tab')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-stone-800 hover:bg-[#0569ff] hover:text-white text-[11px] font-semibold text-stone-600 dark:text-stone-700 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-[13px]">sync</span>
                 <span>สร้างจากรูปที่ 1</span>
@@ -596,7 +596,7 @@
       <div class="flex items-center justify-between border-b border-black/[0.08] pb-3">
         <div class="flex items-center gap-2">
           <span class="material-symbols-outlined text-[#0569ff]">tune</span>
-          <h3 class="font-bold text-sm text-white">ปรับแต่งไดคัต & ขอบขาว (Remat Studio)</h3>
+          <h3 class="font-bold text-sm text-[#171717]">ปรับแต่งไดคัต & ขอบขาว (Remat Studio)</h3>
         </div>
         <button onclick="closeRematModal()" class="text-[#737373] hover:text-stone-600 dark:hover:text-stone-200">
           <span class="material-symbols-outlined text-[20px]">close</span>
@@ -660,7 +660,7 @@
       <div class="flex items-center justify-between border-b border-black/[0.08] pb-3">
         <div class="flex items-center gap-2">
           <span class="material-symbols-outlined text-[#0569ff]">edit_note</span>
-          <h3 class="font-bold text-sm text-white" id="editModalTitle">แก้ไขสติกเกอร์ช่องที่ 1</h3>
+          <h3 class="font-bold text-sm text-[#171717]" id="editModalTitle">แก้ไขสติกเกอร์ช่องที่ 1</h3>
         </div>
         <button onclick="closeEditModal()" class="text-[#737373] hover:text-stone-600 dark:hover:text-stone-200">
           <span class="material-symbols-outlined text-[20px]">close</span>
@@ -697,7 +697,7 @@
       <div class="flex items-center justify-between border-b border-black/[0.08] pb-3">
         <div class="flex items-center gap-2">
           <span class="material-symbols-outlined text-[#0569ff]">grid_view</span>
-          <h3 class="font-bold text-sm text-white">โปสเตอร์รวมชุดสติกเกอร์ 4×10 (LINE Composite Sheet)</h3>
+          <h3 class="font-bold text-sm text-[#171717]">โปสเตอร์รวมชุดสติกเกอร์ 4×10 (LINE Composite Sheet)</h3>
         </div>
         <button onclick="closeCompositeModal()" class="text-[#737373] hover:text-stone-600 dark:hover:text-stone-200">
           <span class="material-symbols-outlined text-[20px]">close</span>
@@ -832,10 +832,10 @@
     function setViewMode(mode) {
       STATE.viewMode = mode;
       document.querySelectorAll('.view-mode-pill').forEach(btn => {
-        btn.classList.remove('bg-white', 'dark:bg-stone-700', 'text-[#1d1d1f]', 'dark:text-white', 'shadow-xs', 'active');
-        btn.classList.add('text-stone-500', 'dark:text-[#737373]');
+        btn.classList.remove('bg-[#171717]', 'text-white', 'shadow-xs', 'active');
+        btn.classList.add('text-stone-700', 'hover:text-black');
         if (btn.dataset.mode === mode) {
-          btn.classList.add('bg-white', 'dark:bg-stone-700', 'text-[#1d1d1f]', 'dark:text-white', 'shadow-xs', 'active');
+          btn.classList.add('bg-[#171717]', 'text-white', 'shadow-xs', 'active');
           btn.classList.remove('text-stone-500', 'dark:text-[#737373]');
         }
       });
@@ -940,10 +940,10 @@
         <div class="p-2.5 rounded-xl border border-stone-200 dark:border-stone-800 hover:border-[#0569ff]/50 bg-stone-50 dark:bg-stone-900/60 transition-all flex items-center justify-between gap-3 group">
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-1.5 mb-1">
-              <span class="font-bold text-xs text-white">${c.caption}</span>
-              <span class="text-[9px] px-1 py-0.2 rounded bg-stone-200 dark:bg-stone-800 text-stone-500 font-mono">${c.category.split('&')[0].trim()}</span>
+              <span class="font-bold text-xs text-[#171717]">${c.caption}</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded bg-stone-200 text-stone-700 font-semibold font-mono">${c.category.split('&')[0].trim()}</span>
             </div>
-            <p class="text-[10px] text-stone-500 dark:text-[#737373] line-clamp-1">${c.pose}</p>
+            <p class="text-[11px] text-stone-600 font-medium line-clamp-1">${c.pose}</p>
           </div>
           <button onclick="applyCaptionToActiveSlot('${c.caption.replace(/'/g, "\\'")}', '${c.pose.replace(/'/g, "\\'")}', '${c.prompt_en.replace(/'/g, "\\'")}')" class="px-2 py-1 rounded-lg bg-[#171717]/10 hover:bg-[#171717] text-[#0569ff] hover:text-white dark:text-emerald-400 text-[10px] font-bold transition-colors flex items-center gap-1 opacity-90 group-hover:opacity-100 flex-shrink-0">
             <span class="material-symbols-outlined text-[13px]">add</span>
@@ -1010,10 +1010,10 @@
           <div id="slot-card-${i}" class="bg-white rounded-2xl p-3 border border-black/[0.06] dark:border-black/[0.08] shadow-sm flex flex-col gap-2.5 transition-all hover:border-[#0569ff]/30">
             <!-- Header: Slot Badge & Caption -->
             <div class="flex items-center justify-between">
-              <span class="px-1.5 py-0.5 rounded bg-stone-100 dark:bg-stone-800 text-[#1d1d1f] dark:text-stone-700 font-mono text-[10px] font-bold">
+              <span class="px-1.5 py-0.5 rounded bg-stone-100 dark:bg-stone-800 text-stone-900 font-mono text-[10px] font-bold">
                 ${numLabel}.png
               </span>
-              <span class="text-[11px] font-bold text-[#0569ff] dark:text-emerald-400 truncate max-w-[110px]" title="${s.caption}">
+              <span class="text-[11px] font-bold text-[#0569ff] font-bold truncate max-w-[110px]" title="${s.caption}">
                 ${s.caption}
               </span>
             </div>
